@@ -1,0 +1,35 @@
+{%extends 'base.html' %}
+
+{%block content%}
+    
+    <ul>
+    </br></br>
+    {%if categoria%}
+        <h2>Post en la categoria {{categoria.nombre}}</h2>
+        </br>
+        </br>
+    {%else%}
+        <h2>Poke-Posts!</h2>
+        </br>
+        </br>
+    {%endif%}
+
+    {%for post in posts%}
+        <a href="{{post.get_absolute_url}}">
+            <h2>{{post.titulo}}</h2>
+        </a>
+        <ul>
+            {%for cat in post.categorias.all%}
+                <a href="{%url 'categoria' cat.nombre%}">
+                <li>{{cat.nombre}}</li></a>
+            {%empty%}
+                <li>No hay categorias</li>
+            {%endfor%}
+        </ul>
+        <p>{{post.cuerpo|truncatewords:15}}</p>
+        <p id='fecha'>{{post.fecha}}</p>
+    {%empty%}
+        <h1>No hay post chavotl</h1>
+    {%endfor%}
+    </ul>
+{%endblock content%}

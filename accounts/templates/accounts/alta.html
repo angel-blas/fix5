@@ -1,0 +1,15 @@
+{%extends 'base.html'%}
+
+{%block content%}
+</br></br></br>
+{%if request.user.is_authenticated%}
+<h2>Primero cierra sesión<a href="{%url 'logout'%}"> Aquí</a></h2>
+{%else%}
+<form action="." method="post">
+    {%csrf_token%}
+    {{form.as_p}}
+    <input type="submit" value="Darme de alta">
+</form>
+{%endif%}
+
+{%endblock content%}

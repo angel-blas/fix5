@@ -1,0 +1,48 @@
+<html>
+<head>
+    <title>Poké-BLog</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+    <style>
+        body{
+        }
+        #titulito{
+        	font-size: 50px;
+        	text-align: center;
+            color #AFF456;
+            margin-top: 10px;
+        }
+        h2{
+           font-size: 25px;
+           font-family: sans-serif;
+           text-align: center;
+           color #AFF456;
+        }
+        p{
+        	 text-align: center;
+        }
+        #fecha{
+        	text-align: right;
+        	font-size: 15px;
+        }
+        .black-text{margin-left: 35px;}
+    </style>
+</head>
+<body>
+    <nav class="blue">
+    <h2 id="titulito">El blog del poké-descontrol!!</h2>
+    <div class="nav-wrapper black-text">
+    {%if request.user.is_authenticated%}
+        <a class="black-text" align="right" href="{%url 'nuevo'%}">Publica algo</a>
+        <a class="black-text" align="right" href="{%url 'perfil'%}">Tu perfil</a>
+        <a class="black-text" href="{%url 'logout'%}">Cerrar Sesión</a>
+    {%else%}
+        <a class="black-text" href="{%url 'login'%}">Iniciar Sesión</a>
+    {%endif%}
+        
+    </div>
+    </nav>
+    {% block content %}
+    {% endblock content%}
+</body>
+</html>
+

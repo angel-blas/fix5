@@ -1,0 +1,32 @@
+{%extends 'base.html'%}
+
+{%block content%}
+</br></br>
+<h1>{{post.titulo}}</h1>
+<p>{{post.cuerpo}}</p>
+
+<style>
+    #comentarioschidotls{
+    	text-align: center;
+    }
+</style>
+
+
+<ul id="comentarioschidotls">
+    {%for comment in comments%}
+    <li>=====---   {{comment.user}}   ---=====</br>{{comment.cuerpo}}</br>{{comment.fecha}}</br></br></li>
+    {%empty%}
+    <p>Aún no se han hecho comentarios</p>
+    {%endfor%}
+
+</ul>
+
+
+<form action="." method="post">
+    {%csrf_token%}
+    {{form.as_p}}
+
+    <input type="submit" value="Comentar">
+</form>
+
+{%endblock content%}
